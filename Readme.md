@@ -1,140 +1,45 @@
-<!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+  # contract
 
+This starter full stack project has been generated using AlgoKit. See below for default getting started instructions.
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/vishal-tiwari9/p2p-investment-algorand">
-    <img src="./client/public/algorand-logo.jpg" alt="Logo" width="280">
-  </a>
+## Setup
 
-  <h3 align="center">Algo Campus </h3>
+### Initial setup
+1. Clone this repository to your local machine.
+2. Ensure [Docker](https://www.docker.com/) is installed and operational. Then, install `AlgoKit` following this [guide](https://github.com/algorandfoundation/algokit-cli#install).
+3. Run `algokit project bootstrap all` in the project directory. This command sets up your environment by installing necessary dependencies, setting up a Python virtual environment, and preparing your `.env` file.
+4. In the case of a smart contract project, execute `algokit generate env-file -a target_network localnet` from the `contract-contracts` directory to create a `.env.localnet` file with default configuration for `localnet`.
+5. To build your project, execute `algokit project run build`. This compiles your project and prepares it for running.
+6. For project-specific instructions, refer to the READMEs of the child projects:
+   - Smart Contracts: [contract-contracts](projects/contract-contracts/README.md)
+   - Frontend Application: [contract-frontend](projects/contract-frontend/README.md)
 
-  <p align="center">
-   Onchain Event Tracking , Monitoring and Verifying Protocol ..where students can also split on Payments
-    <br />
-    <a href="https://github.com/vishal-tiwari9/p2p-investment-algorand/tree/main/docs"><strong>Explore the docs »</strong></a>
-    <br />
-    <a href="https://github.com/vishal-tiwari9/p2p-investment-algorand/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    ·
-    <a href="https://github.com/vishal-tiwari9/p2p-investment-algorand/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
-  </p>
-</div>
+> This project is structured as a monorepo, refer to the [documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/features/project/run.md) to learn more about custom command orchestration via `algokit project run`.
 
+### Subsequently
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
+1. If you update to the latest source code and there are new dependencies, you will need to run `algokit project bootstrap all` again.
+2. Follow step 3 above.
 
+## Tools
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+This project makes use of Python and React to build Algorand smart contracts and to provide a base project configuration to develop frontends for your Algorand dApps and interactions with smart contracts. The following tools are in use:
 
-AlgoCampus is a decentralized event orchestration and social finance protocol designed to facilitate high-integrity, verifiable hackathons and seamless P2P expense management on the Algorand blockchain.
+- Algorand, AlgoKit, and AlgoKit Utils
+- Python dependencies including Poetry, Black, Ruff or Flake8, mypy, pytest, and pip-audit
+- React and related dependencies including AlgoKit Utils, Tailwind CSS, daisyUI, use-wallet, npm, jest, playwright, Prettier, ESLint, and Github Actions workflows for build validation
 
-The protocol consists of two primary actors: the Event Admin and the Participant. Admins initiate the lifecycle by deploying an event instance that utilizes Box Storage to manage large-scale participant registries with minimal global state overhead. A Participant enters the ecosystem by submitting an on-chain registration transaction; once validated, the protocol generates a cryptographic proof of attendance. For financial interactions, the protocol leverages Atomic Transfers to facilitate P2P payments and multi-party fee splitting for event-related costs (such as hackathon registrations or resource sharing). This ensures that fee distributions are settled on-chain using the AlgoCampus::settleSplit() function, which requires a group transaction to be signed by all contributing parties. The protocol maintains a low Minimum Balance Requirement (MBR) by offloading individual user data to optimized box clusters, ensuring cost-efficiency for the administrator.
+### VS Code
 
-The protocol uses cryptographic signatures to derive verifiable QR codes for secure physical check-ins, and ARC-4 compliant method invocation to ensure interoperability with the broader Algorand ecosystem.
+It has also been configured to have a productive dev experience out of the box in [VS Code](https://code.visualstudio.com/), see the [backend .vscode](./backend/.vscode) and [frontend .vscode](./frontend/.vscode) folders for more details.
 
-The protocol is optimized for the Algorand Virtual Machine (AVM) and is architected to support high-concurrency environments like university campuses and global developer summits.
-### Built With
+## Integrating with smart contracts and application clients
 
-- ![Foundry](https://img.shields.io/badge/-FOUNDRY-%23323330.svg?style=for-the-badge)
-- ![Solidity](https://img.shields.io/badge/Solidity-%23363636.svg?style=for-the-badge&logo=solidity&logoColor=white)
+Refer to the [contract-contracts](projects/contract-contracts/README.md) folder for overview of working with smart contracts, [projects/contract-frontend](projects/contract-frontend/README.md) for overview of the React project and the [projects/contract-frontend/contracts](projects/contract-frontend/src/contracts/README.md) folder for README on adding new smart contracts from backend as application clients on your frontend. The templates provided in these folders will help you get started.
+When you compile and generate smart contract artifacts, your frontend component will automatically generate typescript application clients from smart contract artifacts and move them to `frontend/src/contracts` folder, see [`generate:app-clients` in package.json](projects/contract-frontend/package.json). Afterwards, you are free to import and use them in your frontend application.
 
+The frontend starter also provides an example of interactions with your HelloAlgocampusClient in [`AppCalls.tsx`](projects/contract-frontend/src/components/AppCalls.tsx) component by default.
 
-<!-- GETTING STARTED -->
-## Getting Started
+## Next Steps
 
-### Prerequisites
-
-Make sure you have git and foundry installed and configured on your system.
-
-### Installation
-
-Clone the repo,
-
-```shell
-git clone https://github.com/vishal-tiwari9/p2p-investment-algorand.git
-```
-
-cd into the repo, and install the necessary dependencies
-
-```shell
-cd contract
-run test
-```
-
-That's it, you are good to go now!
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Smart contract development
-- [x] Unit tests
-- [x] Write Docs
-- [x] Write a good README.md
-
-See the [open issues](https://github.com/vishal-tiwari9/p2p-investment-algorand/issues) for a full list of proposed features (and known issues).
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/vishal-tiwari9/p2p-investment-algorand.svg?style=for-the-badge
-[contributors-url]: https://github.com/vishal-tiwari9/p2p-investment-algorand/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/vishal-tiwari9/p2p-investment-algorand.svg?style=for-the-badge
-[forks-url]: https://github.com/vishal-tiwari9/p2p-investment-algorand/network/members
-[stars-shield]: https://img.shields.io/github/stars//vishal-tiwari9/soho-orderbook.svg?style=for-the-badge
-[stars-url]: https://github.com/vishal-tiwari9/p2p-investment-algorand/stargazers
-[issues-shield]: https://img.shields.io/github/issues/vishal-tiwari9/p2p-investment-algorand.svg?style=for-the-badge
-[issues-url]: https://github.com/vishal-tiwari9/p2p-investment-algorand/issues
-[license-shield]: https://img.shields.io/github/license/vishal-tiwari9/p2p-investment-algorand.svg?style=for-the-badge
-[license-url]: https://github.com/vishal-tiwari9/p2p-investment-algorand/blob/master/LICENSE.txt
+You can take this project and customize it to build your own decentralized applications on Algorand. Make sure to understand how to use AlgoKit and how to write smart contracts for Algorand before you start.
