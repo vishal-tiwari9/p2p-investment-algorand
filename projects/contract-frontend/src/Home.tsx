@@ -25,6 +25,7 @@ const Home: React.FC = () => {
         >
           {activeAddress ? `${activeAddress.substring(0, 6)}...${activeAddress.substring(38)}` : "Connect Wallet"}
         </button>
+        <ConnectWallet openModal={openWalletModal} closeModal={() => setOpenWalletModal(false)} />
       </nav>
 
       {/* --- Hero Section --- */}
@@ -112,7 +113,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <ConnectWallet openModal={openWalletModal} closeModal={() => setOpenWalletModal(false)} />
+      
     </div>
   )
 }
